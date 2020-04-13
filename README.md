@@ -2,8 +2,8 @@
 Book management application
 requirement
 Python 3 and Pipenv need to already be installed.
-Django 2.1.7
-Djangorestframework 3
+Django==2.1.7
+Djangorestframework==3.10
 
 Clone the repo to your computer. For example, to place it on your Desktop.
 cd ~/Desktop
