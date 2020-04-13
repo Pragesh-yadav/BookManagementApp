@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+    <title>Book Management</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/admin/css/dashboard.css"
+    />
+
+    <meta
+      name="viewport"
+      content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/admin/css/responsive.css"
+    />
+
+    <meta name="robots" content="NONE,NOARCHIVE" />
+  </head>
+
+  <body class="dashboard" data-admin-utc-offset="0">
+    <!-- Container -->
+    <div id="container">
+      <!-- Header -->
+      <div id="header">
+        <div id="branding">
+          <h1 id="site-name">
+            <a href="/admin/">Welcome to Book Management</a>
+          </h1>
+        </div>
+
+        <div id="user-tools">
+          Welcome,
+          <strong>logged in user Name</strong>.
+
+          <a href="/admin/password_change/">Change password</a> /
+
+          <a href="/logout/">Log out</a>
+        </div>
+      </div>
+      <!-- END Header -->
+      <h1>Your books</h1>
+      <ul class="object-tools">
+        <li>
+          <a href="{{request.META.HTTP_NAME}}/addNewBook/" class="addlink">
+            Add book
+          </a>
+        </li>
+      </ul>
+      <div class="results">
+        <table>
+          <thead>
+            <tr>
+              <td>Title</td>
+
+              <td>Author</td>
+              <td>Genre</td>
+              <td>Amazon URL</td>
+              <td>Edit</td>
+              <td>Delete</td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for book in shelf %}
+            <tr>
+              <td>
+                {{ book.title }}
+              </td>
+              <td>
+                {{book.author}}
+              </td>
+              <td>
+                {{ book.genre }}
+              </td>
+
+              <td>
+                <a href="{{book.amazon_url}}">link</a>
+              </td>
+              <td>
+                <a
+                  class="btn btn-warning"
+                  href="{{ request.META.HTTP_NAME }}/editBookById/{{book.id}}"
+                  >Edit</a
+                >
+              </td>
+              <td>
+                <a
+                  class="btn btn-danger"
+                  href="{{ request.META.HTTP_NAME }}/delete/{{book.id}}"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Content -->
+      <!-- <div id="content" class="colMS">
+        <h1>Your books</h1>
+
+        <div id="content-main">
+          <div class="card-columns">
+            {% for book in shelf %}
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{{ book.picture.url }}" />
+              <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <h3 class="link">
+                  <a href="{{book.amazon_url}}">amazon_url</a>
+                </h3>
+                <p class="card-text">{{ book.genre }}</p>
+                <p class="card-title">{{book.author}}</p>
+                <center>
+                  <a
+                    href="editBookById/{{book.id}}"
+                    class="btn btn-warning"
+                    id="{{book.id}}"
+                    >edit</a
+                  >
+                  <a
+                    href="delete/{{book.id}}"
+                    class="btn btn-danger"
+                    id="{{book.id}}"
+                    >delete</a
+                  >
+                </center>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <br class="clear" />
+      </div> -->
+      <!-- END Content -->
+
+      <div id="footer"></div>
+    </div>
+    <!-- END Container -->
+  </body>
+</html>
